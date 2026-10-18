@@ -4,10 +4,22 @@ export default function AboutSection() {
       <div className="container narrow">
         <p className="eyebrow blue">01 / ABOUT</p>
         <h2>About me</h2>
+
         <p className="lead">
-          I focus on creating useful, accessible, and maintainable software. My professional
-          background is primarily in Angular frontend development, and I am continuing to grow as a
-          full-stack developer.
+          I am a software developer based in Hannover, Germany, with around five years of
+          professional experience building Angular and TypeScript applications.
+        </p>
+
+        <p>
+          My experience includes enterprise applications, reusable component libraries,
+          micro-frontends, accessibility, REST API integration, testing, and CI/CD workflows.
+        </p>
+
+        <p>
+          I have also expanded my skills in Java, Spring Boot, React, and PostgreSQL through
+          full-stack development projects. I have gained foundational experience with AI-assisted
+          development and agentic coding using Claude Code. I enjoy learning new technologies,
+          solving practical problems, and building software that is easy to use and maintain.
         </p>
       </div>
     </section>
