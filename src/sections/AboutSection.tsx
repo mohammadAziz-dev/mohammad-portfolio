@@ -1,26 +1,20 @@
+import { useLanguage } from '../i18n/LanguageContext';
+
 export default function AboutSection() {
+  const { t } = useLanguage();
+
   return (
     <section id="about" className="section">
       <div className="container narrow">
-        <p className="eyebrow blue">01 / ABOUT</p>
-        <h2>About me</h2>
+        <p className="eyebrow blue">{t.about.eyebrow}</p>
 
-        <p className="lead">
-          I am a software developer based in Hannover, Germany, with around five years of
-          professional experience building Angular and TypeScript applications.
-        </p>
+        <h2>{t.about.title}</h2>
 
-        <p>
-          My experience includes enterprise applications, reusable component libraries,
-          micro-frontends, accessibility, REST API integration, testing, and CI/CD workflows.
-        </p>
+        <p className="lead">{t.about.lead}</p>
 
-        <p>
-          I have also expanded my skills in Java, Spring Boot, React, and PostgreSQL through
-          full-stack development projects. I have gained foundational experience with AI-assisted
-          development and agentic coding using Claude Code. I enjoy learning new technologies,
-          solving practical problems, and building software that is easy to use and maintain.
-        </p>
+        <p>{t.about.experience}</p>
+
+        <p>{t.about.development}</p>
       </div>
     </section>
   );
