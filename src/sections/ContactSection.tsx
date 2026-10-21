@@ -1,6 +1,7 @@
 import { useState, type SubmitEvent } from 'react';
 import { profile } from '../content';
 import ExternalLink from '../components/ExternalLink';
+import { useLanguage } from '../i18n/LanguageContext';
 
 const FORM_ENDPOINT = 'https://formspree.io/f/xgaorpoz';
 
@@ -13,6 +14,7 @@ type ContactForm = {
 const initialForm: ContactForm = { name: '', email: '', message: '' };
 
 export default function ContactSection() {
+  const { t } = useLanguage();
   const [form, setForm] = useState<ContactForm>(initialForm);
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
 
@@ -49,15 +51,13 @@ export default function ContactSection() {
     <section id="contact" className="section muted">
       <div className="container contact-grid">
         <div>
-          <p className="eyebrow blue">06 / CONTACT</p>
-          <h2>Get in touch</h2>
-          <p className="lead">
-            Interested in working together or discussing an opportunity? I'd be happy to hear from
-            you.
-          </p>
+          <p className="eyebrow blue">{t.contact.eyebrow}</p>
+          <h2>{t.contact.title}</h2>
+          <p className="lead">{t.contact.introduction}</p>
+
           <div className="contact-links">
-            <ExternalLink href={profile.linkedin}>LinkedIn profile</ExternalLink>
-            <ExternalLink href={profile.github}>GitHub profile</ExternalLink>
+            <ExternalLink href={profile.linkedin}>{t.contact.linkedin}</ExternalLink>
+            <ExternalLink href={profile.github}>{t.contact.github}</ExternalLink>
             {profile.email && <a href={`mailto:${profile.email}`}>{profile.email}</a>}
           </div>
         </div>
@@ -65,18 +65,18 @@ export default function ContactSection() {
         <form className="contact-form" onSubmit={handleSubmit}>
           <div className="form-row">
             <label>
-              Name
+              {t.contact.form.name}
               <input
                 required
                 name="name"
                 autoComplete="name"
                 value={form.name}
                 onChange={(event) => updateField('name', event.target.value)}
-                placeholder="Your name"
+                placeholder={t.contact.form.namePlaceholder}
               />
             </label>
             <label>
-              Email
+              {t.contact.form.email}
               <input
                 required
                 name="email"
@@ -84,32 +84,36 @@ export default function ContactSection() {
                 autoComplete="email"
                 value={form.email}
                 onChange={(event) => updateField('email', event.target.value)}
-                placeholder="you@example.com"
+                placeholder={t.contact.form.emailPlaceholder}
               />
             </label>
           </div>
+
           <label>
-            Message
+            {t.contact.form.message}
             <textarea
               required
               name="message"
               rows={6}
               value={form.message}
               onChange={(event) => updateField('message', event.target.value)}
-              placeholder="Your message"
+              placeholder={t.contact.form.messagePlaceholder}
             />
           </label>
+
           <button className="button submit" type="submit" disabled={status === 'sending'}>
-            {status === 'sending' ? 'Sending…' : 'Send message ↗'}
+            {status === 'sending' ? t.contact.form.sending : t.contact.form.send}
           </button>
+
           {status === 'success' && (
             <p className="notice" role="status">
-              Thank you! Your message was sent successfully.
+              {t.contact.form.success}
             </p>
           )}
+
           {status === 'error' && (
             <p className="notice" role="alert">
-              Message could not be sent. Please try again or contact me on LinkedIn.
+              {t.contact.form.error}
             </p>
           )}
         </form>
